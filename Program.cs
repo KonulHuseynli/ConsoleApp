@@ -95,6 +95,7 @@ namespace ConsoleApp88
                                     AddDrug(drugs);
                                     break;
                                 case "3":
+                                    SellDrug();
                                     break;
                                 case "4":
                                     break;
@@ -123,8 +124,8 @@ namespace ConsoleApp88
                 }
                 #endregion
 
-                ReadKey(true);
 
+                ReadKey(true);
 
             }
         }
@@ -287,5 +288,48 @@ namespace ConsoleApp88
                 }
 
             }
+        public static void SellDrug(string name,int count)
+        {
+            Drug drug = new Drug();
+            Helper.PrintColor("Which type of drug do you want", ConsoleColor.Cyan);
+            string drugname1 = Console.ReadLine();
+            inputcountd:
+            Helper.PrintColor("How many drug do you want", ConsoleColor.Cyan);
+            string drugcount1 = Console.ReadLine();
+            bool isParsableDCount = int.TryParse(drugcount1, out int dcount);
+            if(!isParsableDCount)
+            {
+                Helper.PrintFormat("Please include in correct count",ConsoleColor.DarkRed);
+                goto inputcountd;
+                if(drugname1==drug.Name)
+                {
+                    if(dcount<drug.Count)
+                    {
+                        if(dcount!=0)
+                        {
+                            Helper.PrintFormat($"We have {drug.Count}, Should we give that much",ConsoleColor.DarkMagenta);
+                            string answer = Console.ReadLine();
+                            if(answer=="yes")
+                            {
+                                SellDrug(name, count);
+                            }
+                        }
+                        else if(drug.Count==0)
+                        {
+                            Helper.PrintColor($"Unfortunately, there is no {drugname1} enough",ConsoleColor.DarkRed); 
+                        }
+                    }
+                    else
+                    {
+                        drug.Count -= dcount;
+                        drug.PurchasePrice += drug.SalePrice * dcount;
+                    }
+                }
+            }
+        }
+        public static void DeletEmployee()
+        {
+
+        }
         }
     }
