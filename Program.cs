@@ -237,7 +237,7 @@ namespace ConsoleApp88
                 }
                 else if (drug.DrugType == drugtype)
                 {
-                    Helper.PrintColor("Please include correct drug name", ConsoleColor.DarkRed);
+                    Helper.PrintColor("Please include correct drug type", ConsoleColor.DarkRed);
                     goto checkerdrug;
 
                 }
